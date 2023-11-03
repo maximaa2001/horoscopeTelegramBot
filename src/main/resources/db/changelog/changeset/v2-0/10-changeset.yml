@@ -1,0 +1,36 @@
+databaseChangeLog:
+  - changeSet:
+      id: 10
+      author: maks
+      changes:
+        - createTable:
+            tableName: zodiac_signs
+            columns:
+              - column:
+                  name: id
+                  type: smallint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: name
+                  type: varchar
+                  constraints:
+                    nullable: false
+
+        - addColumn:
+            tableName: users
+            columns:
+              - column:
+                  name: zodiac_sign_id
+                  type: smallint
+                  constraints:
+                    foreignKeyName: fk_user_zodiac_sign
+                    references: zodiac_signs(id)
+      rollback:
+        - dropColumn:
+            tableName: users
+            columnName: zodiac_sign_id
+        - dropTable:
+            tableName: zodiac_signs

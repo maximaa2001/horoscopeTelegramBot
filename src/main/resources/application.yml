@@ -1,0 +1,21 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+  datasource:
+    url: ${HOROSCOPE_BOT_DATABASE_URL}
+    username: ${HOROSCOPE_BOT_DATABASE_USERNAME}
+    password: ${HOROSCOPE_BOT_DATABASE_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.yaml
+    enabled: true
+
+telegram:
+  bot:
+    username: ${BOT_USERNAME}
+    token: ${BOT_TOKEN}
+
+app:
+  synchronization: true
